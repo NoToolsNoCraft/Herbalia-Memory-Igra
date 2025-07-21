@@ -515,13 +515,18 @@ body {
 @media (min-width: 416px) and (max-width: 450px) {
   .container {
     position: relative;       /* or absolute/fixed/sticky depending on your layout needs */
-    width: 36vw !important;
+    width: 91vw !important;
     
   }
 
   #memoryGamePanel.open {
-    margin-top: 90px !important;
-    max-width: 600px;
+    margin-top: 150px !important;
+    max-width: 100vw;
+    }
+
+   .close-btn {
+    top: 1rem;
+    right: 1rem;
     }
 }
 
