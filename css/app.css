@@ -581,11 +581,20 @@ body {
   
   .container {
     position: relative;       /* or absolute/fixed/sticky depending on your layout needs */
-    width: 35vw !important;
+    width: 30vw !important;
   }
 
   #memoryGamePanel.open {
     margin-top: 40px !important;
+    }
+
+    #memoryGamePanel {
+    max-width: 450px;
+    }
+
+    .close-btn {
+    top: 1rem;
+    right: 1.2rem;
     }
 }
 
