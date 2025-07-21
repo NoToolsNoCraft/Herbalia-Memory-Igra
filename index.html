@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta property="og:title" content="L'Oreal Memory Game" />
+	<meta property="og:description" content="Here’s a concept showing how L'Oréal could gamify product discovery." />
+	<meta property="og:image" content="https://raw.githubusercontent.com/NoToolsNoCraft/L-Oreal-Memory-Game-Widget/refs/heads/main/loreal-memory-game-thumbnail.webp" />
+	<meta property="og:url" content="https://notoolsnocraft.github.io/L-Oreal-Memory-Game-Widget/" />
+	<meta property="og:type" content="website" />
+
+	<title>Herbalia Memory Game</title>
+
+	<!--ONLY Font Awesome 6.5 -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-sV6TZzUu+Uo6KUpR37Fz6NqDh+n1EsATul4v8htXKgkm8nDz4FrT2nKCSExG1N9n+K9V71sG9XQO54oQuU/sLw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link href="https://fonts.googleapis.com/css?family=Chicle" rel="stylesheet">
+	<link rel="stylesheet" href="css/app.css">
+	<link rel="stylesheet" href="public/css/all.min.css">
+
+</head>
+<body>
+
+	<button id="openGameButton" aria-label="Play Memory Game 🎮">🎮 Igraj i otkrij!</button>
+	<!-- Overlay + Slide-in Memory Game Panel -->
+<div id="memoryGameOverlay" class="memory-overlay" aria-hidden="true">
+  <aside id="memoryGamePanel" role="dialog" aria-modal="true" aria-labelledby="memoryGameTitle">
+    
+	<button class="close-btn" aria-label="Close Memory Game">
+		<i class="fas fa-times"></i>
+	</button>
+    <!-- Memory Game Content -->
+    
+	
+	<div class="container">
+		<div class="internal">
+		<img src="Herbalia logo.webp" alt="Herbalia Logo" class="logo">
+
+		<div class = "dashboard">
+			<div class="dashboard-element">
+				<i class=" dashboard-icon fas fa-stopwatch"></i> <span id="timer"></span>
+			</div>
+			<div class="dashboard-element">
+				<i class=" dashboard-icon fas fa-clone"></i> <span id="moves"></span>
+			</div>
+			<div class="dashboard-element">
+				<i id = "reset" class="fas fa-redo-alt"></i> <span></span>
+			</div>
+
+			
+		</div>
+		
+		<div id="stars">
+			<i class="fas fa-star" id="rating-poor"></i>
+			<i class="fas fa-star" id="rating-average"></i>
+			<i class="fas fa-star" id="rating-perfect"></i>
+		</div>
+			
+
+		<div id="form" style="display: none;">
+			<input type="radio" id="type1Mode"
+				name="difficulty" value="type1" checked="checked">
+			<label class="checked" for="type1Mode">Herbalia</label>
+		</div>
+
+
+		<div class="game-board">
+		</div>
+
+		
+		
+	</div>
+	
+	<div class="modal hide">
+		<div class="modal-inner">
+
+			<!-- Promotion section -->
+        <div class="promo-section">
+            <a href="https://herbalia.rs/brend/zoya" target="_blank">
+                <img src="promotion.webp" alt="Have you seen this? Try it out!" class="promo-image" />
+            </a>
+        </div>
+
+			<h3>Fenomenalno urađeno!</h3>
+			<p class="modal-text">Rešili ste igru za <span id="final-time"></span> sekundi i <span id="final-moves"></span> poteza!</p>
+
+			<p class="modal-text" id="final-rating"></p>
+
+			<p class="modal-text" id="replay"> <i class="fas fa-redo-alt"></i> Igraj ponovo?</p>
+
+				<div class="share-buttons">
+					<p>Tvoja memorija je sjajna! 🌿 Izazovi prijatelja i uporedite rezultate:</p>
+					<a id="shareFacebook" class="share-btn fb" target="_blank">📘 Facebook</a>
+					<a id="shareWhatsApp" class="share-btn wa" target="_blank">📱 WhatsApp</a>
+					<a id="shareViber" class="share-btn vb" target="_blank">📩 Viber</a>
+					<a id="shareTelegram" class="share-btn tg" target="_blank">🚀 Telegram</a>
+				</div>
+		</div>
+		
+
+		
+		</div>
+	</div>
+
+	
+</div>
+  </aside>
+</div>	
+	<script type="text/javascript" src="js/app.js"></script>
+
+	<script>
+  const openBtn = document.getElementById('openGameButton');
+  const overlay = document.getElementById('memoryGameOverlay');
+  const panel = document.getElementById('memoryGamePanel');
+  const closeBtn = panel.querySelector('.close-btn');
+
+  // Open the panel
+  openBtn.addEventListener('click', () => {
+    overlay.classList.add('open');
+    panel.classList.add('open');
+    overlay.setAttribute('aria-hidden', 'false');
+  });
+
+  // Close when clicking close button
+  closeBtn.addEventListener('click', closePanel);
+
+  // Close when clicking outside panel
+  overlay.addEventListener('click', e => {
+    if (e.target === overlay) closePanel();
+  });
+
+  function closePanel() {
+    panel.classList.remove('open');
+    overlay.classList.remove('open');
+    overlay.setAttribute('aria-hidden', 'true');
+  }
+</script>
+
+</body>
+</html>
