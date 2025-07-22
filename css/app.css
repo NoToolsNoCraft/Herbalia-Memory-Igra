@@ -123,6 +123,7 @@ body {
     width: 100%;
     padding-top: 100%; /* 1:1 aspect ratio */
     perspective: 1000px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .card {
@@ -134,7 +135,6 @@ body {
     border-radius: 12px;
     transition: transform 0.6s;
     backface-visibility: hidden;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     overflow: hidden;
 }
 
