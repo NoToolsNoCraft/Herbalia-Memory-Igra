@@ -14,7 +14,6 @@ const iconsType1 = [
 
 
 window.addEventListener('load', async () => {
-    await loadImages(); // Assuming loadImages() is defined elsewhere to preload images
     startGame();
 });
 
