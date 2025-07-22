@@ -502,7 +502,7 @@ body {
   }
 
   #memoryGamePanel.open {
-    margin-top: 150px !important;
+    margin-top: 100px !important;
     max-width: 100vw;
     }
 
