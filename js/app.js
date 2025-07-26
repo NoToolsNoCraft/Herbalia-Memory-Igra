@@ -7,15 +7,7 @@ const iconsType1 = [
     './images/Herbalia/repair.webp',
     './images/Herbalia/ulje za kosu.webp',
     './images/Herbalia/vitamin c piling.webp',
-
 ];
-
-
-
-
-window.addEventListener('load', async () => {
-    startGame();
-});
 
 const board = document.querySelector('.game-board');
 const reset = document.getElementById('reset');
@@ -26,8 +18,9 @@ const difficultyLabels = document.querySelectorAll("#form label");
 const timer = document.getElementById('timer');
 const ratingPerfect = document.getElementById('rating-perfect');
 const ratingAverage = document.getElementById('rating-average');
-const cardContainers = document.querySelectorAll('.card-container');
 const modal = document.querySelector('.modal');
+const startHint = document.getElementById('startHint'); // Get the start hint element
+
 let clickCount = 0;
 let selectedCards = [];
 let iconClasses, sec, moves, wrongMoves, correctMoves, difficulty, difficultyClass, setTimer, selectedIcons;
@@ -105,7 +98,6 @@ function populate(num) {
     board.appendChild(fragment);
 }
 
-
 function stopwatch() {
     sec += 1;
     if (sec < 60) {
@@ -135,13 +127,11 @@ function checkwin(num) {
     //easy won with 2 correct moves, normal with 8 and hard with 18
     let won;
     switch (difficultyClass) {
-
         case 'normal':
             if (num === 8) {
                 won = true;
             };
             break;
-
     };
     if (won === true) {
         //wait 1 sec for the cards to flip right side up
@@ -156,7 +146,6 @@ function checkwin(num) {
 
             // **Call updateShareLinks after values are set**
             updateShareLinks();
-
         }, 1000);
     }
 }
@@ -164,6 +153,14 @@ function checkwin(num) {
 function matchChecker(e) {
     // LOGIC IS: make sure the click target is a card and prevent doubleclicking
     if (e.target.classList.contains('card') && !e.target.classList.contains('front-open')) {
+
+        // Hide the hint on the first card click
+        if (startHint && startHint.classList.contains('show')) {
+            startHint.classList.remove('show');
+            // Store in localStorage that the game has started for the first time
+            localStorage.setItem('memoryGameStarted', 'true');
+        }
+
         // Flip the card on click
         e.target.classList.add('front-open');
         e.target.nextElementSibling.classList.add('back-open');
@@ -218,21 +215,7 @@ function matchChecker(e) {
 }
 
 
-const copyResultsButton = document.getElementById('copyResultsButton');
 
-if (copyResultsButton) {
-    copyResultsButton.addEventListener('click', () => {
-        const time = document.getElementById('final-time').innerText;
-        const moves = document.getElementById('final-moves').innerText;
-        const gameUrl = window.location.href;
-
-        const results = `Razbio/la sam Herbalia memorijsku igru za ${time} sekundi i ${moves} poteza! 🌟 Otkrij svet prirodne kozmetike i ti! Izazivam te da se okušaš i pronađeš svoje omiljene Herbalia proizvode. Pogledaj ovde: ${gameUrl}`;
-
-        navigator.clipboard.writeText(results)
-            .then(() => alert('Rezultat je kopiran! Slobodno ga podeli!'))
-            .catch(err => alert('Kopiranje neuspelo.'));
-    });
-}
 
 // Social media sharing options (unchanged)
 function updateShareLinks() {
@@ -246,16 +229,13 @@ function updateShareLinks() {
     document.getElementById('shareWhatsApp').href = `https://wa.me/?text=${encodedMessage}`;
     document.getElementById('shareViber').href = `viber://forward?text=${encodedMessage}`;
     document.getElementById('shareTelegram').href = `https://t.me/share/url?url=${encodeURIComponent(gameUrl)}&text=${encodedMessage}`;
-
 }
 
 window.addEventListener('load', updateShareLinks);
 
 
-
-
 function startGame() {
-    //cleanup board and reset everything
+    // Reset values
     sec = 0;
     moves = 0;
     wrongMoves = 0;
@@ -266,14 +246,23 @@ function startGame() {
     ratingPerfect.classList.remove('hide');
     ratingAverage.classList.remove('hide');
     clearInterval(setTimer);
-    //restart game logic
+
+    // Reset game state
     checkDifficulty();
     populate(difficulty);
-    //start the timer on first click
+
+    // Show hint ONLY if localStorage key 'memoryGameStarted' is NOT set
+    if (!localStorage.getItem('memoryGameStarted')) {
+        startHint.classList.add('show');
+    } else {
+        startHint.classList.remove('show');
+    }
+
+    // Timer on first click (existing)
     board.addEventListener('click', function clickOnce() {
         clearInterval(setTimer);
         setTimer = setInterval(stopwatch, 1000);
-        board.removeEventListener('click', clickOnce)
+        board.removeEventListener('click', clickOnce);
     });
 }
 
@@ -298,6 +287,8 @@ modal.addEventListener('click', function (e) {
 });
 
 board.addEventListener('click', matchChecker);
+
+// Initial game start on page load
 window.addEventListener('load', () => {
     startGame();
 });

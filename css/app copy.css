@@ -18,10 +18,10 @@ body {
 
 .container {
     max-width: 500px;
-    max-height: 100vh;
     width: 100%;
     background: #fff;
     border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
     overflow: hidden;
     padding: 24px;
     text-align: center;
@@ -30,64 +30,52 @@ body {
 
 
 .start-hint {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-65%, -20%) rotate(-10deg);
-    display: flex; /* Use flexbox for internal layout (arrow and text) */
-    flex-direction: column; /* Stack arrow and text vertically */
-    align-items: center; /* Center items horizontally within the hint */
-    justify-content: center; /* Center items vertically within the hint */
-    padding: 15px;
-    
-    color: white;
-    border-radius: 8px;
-    z-index: 1000; /* Make sure it's above other elements */
-    text-align: center;
-    pointer-events: none; /* Allows clicks to pass through the hint to the cards below */
-    opacity: 0; /* Initially hidden */
-    transition: opacity 0.3s ease-in-out; /* Smooth fade in/out */
+  position: absolute;
+  z-index: 999;
+  pointer-events: none;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 310px;
+  margin-left: 7rem;
+  transform: rotate(-10deg); /* rotates 30 degrees counter-clockwise */
+  transform-origin: center bottom; /* optional: pivot point for rotation */
+  
 }
 
-.start-hint.show {
-    opacity: 1; /* Show the hint */
-}
+
 
 .start-hint .arrow {
-    font-size: 3em;
-    margin-bottom: 5px;
-    animation: bounce 1s infinite; /* Add a little animation */
-    text-shadow:
-        -1px -1px 0 #000,
-        1px -1px 0 #000,
-        -1px 1px 0 #000,
-        1px 1px 0 #000,
-        0px 0px 8px rgba(0,0,0,0.9);
+  font-size: 4rem;
+  color: #3e4e2c;
+  animation: bounce-up 1s infinite;
+  
+  
 }
 
 .start-hint .hint-text {
-    font-size: 1.3em;
-    font-weight: bold;
-    text-shadow:
-        -1px -1px 0 #000,
-        1px -1px 0 #000,
-        -1px 1px 0 #000,
-        1px 1px 0 #000,
-        0px 0px 8px rgba(0,0,0,0.9);
-      background-color: rgba(0, 0, 0, 0.1); /* Semi-transparent background for better readability */
-      border-radius: 15px;
-    }
+  background-color: #f5fbe6;
+  color: #3e4e2c;
+  padding: 10px 16px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-weight: 600;
+  font-size: 1.3rem;
+  max-width: 200px;
+  line-height: 1.3;
+  border: 2px solid #d5e6b6;
+}
 
-@keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
-        transform: translateY(0);
-    }
-    40% {
-        transform: translateY(-10px);
-    }
-    60% {
-        transform: translateY(-5px);
-    }
+@keyframes bounce-up {
+  0%, 100% { transform: translateY(5px); }
+  50% { transform: translateY(-5px); }
+}
+
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.6; }
+  100% { opacity: 1; }
 }
 
 
@@ -500,6 +488,10 @@ body {
 }
 
 
+
+
+
+
 /* Overlay covering entire viewport */
 .memory-overlay {
   position: fixed;
@@ -519,47 +511,26 @@ body {
   z-index: 1001; /* higher than sticky nav etc */
   padding: 2rem;
   border-radius: 1rem;
-  
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
 }
 
 /* Slide-in panel styles */
 #memoryGamePanel {
   position: fixed;
-  align-items: center;
   right: 0;
-  width: 100vw;
-  max-height: 100vh;
+  /*width: 550px;*/
+  
   background-color: #fce7f3;
-  
-  
+  box-shadow: -4px 0 8px rgba(0,0,0,0.1);
+  transform: translateX(100%);
   transition: transform 0.3s ease-in-out;
   z-index: 1000;
   display: flex;
   flex-direction: column;
-  
   padding: 0.4rem;
-  border-radius: 15px;
-  
+  overflow-y: auto;
 
 
-}
-
-@media (min-width: 500px) {
-  #memoryGamePanel {
-    position: absolute; /* Or fixed, depending on if you want it to scroll with content */
-    right: 0; /* Sticks to the right side of the screen */
-    width: 450px; /* Example: set a fixed width for larger screens */
-    /* Or use a max-width if you want it to be responsive but not grow too large */
-    /* max-width: 50vw; */
-  }
-}
-
-@media (min-width: 500px) and (max-height: 699px) {
-  #memoryGamePanel {
-    width: 350px; /* Example: set a fixed width for larger screens */
-    /* Or use a max-width if you want it to be responsive but not grow too large */
-    /* max-width: 50vw; */
-  }
 }
   
 /* When open */
@@ -569,17 +540,12 @@ body {
   pointer-events: auto;
   transition-delay: 0s; /* override delay */
   border-radius: 15px;
-  
 }
 
 
 /* When overlay shown */
 .memory-overlay.open {
   display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: center;
-  max-height: 100vh;
 }
 
 /* When panel visible */
@@ -610,8 +576,8 @@ body {
 
 .close-btn {
   position: absolute;
-  top: 1rem;
-  right: 1rem;
+  top: 1.5rem;
+  right: 2.5rem;
   background-color: #fff;
   color: #db2777;
   border: 2px solid #db2777;
@@ -632,5 +598,308 @@ body {
 .close-btn:hover {
   background-color: #db2777;
   color: white;
+}
+
+
+
+@media (min-width: 320px) and (max-width: 339px) {
+  .container {
+    position: relative;       /* or absolute/fixed/sticky depending on your layout needs */
+    width: 97vw !important;
+    
+  }
+
+  #memoryGamePanel.open {
+    margin-top: 0.3rem !important;
+    width: 100vw;
+    }
+
+   .close-btn {
+    top: 0.5rem;
+    right: 0.3rem;
+    }
+
+    .start-hint {
+    margin-top: 270px;
+    margin-left: 4rem;
+     
+    }
+ }
+
+@media (min-width: 340px) and (max-width: 349px) {
+  .container {
+    position: relative;       /* or absolute/fixed/sticky depending on your layout needs */
+    width: 97vw !important;
+    
+  }
+
+  #memoryGamePanel.open {
+    margin-top: 70px !important;
+    width: 100vw;
+    }
+
+   .close-btn {
+    top: 1rem;
+    right: 0.5rem;
+    }
+}
+
+@media (min-width: 350px) and (max-width: 374px) {
+  .container {
+    position: relative;       /* or absolute/fixed/sticky depending on your layout needs */
+    width: 97vw !important;
+    
+  }
+
+  #memoryGamePanel.open {
+    margin-top: 2rem !important;
+    width: 100vw;
+    }
+
+   .close-btn {
+    top: 1rem;
+    right: 0.5rem;
+    }
+
+    .start-hint {
+    margin-top: 280px;
+    margin-left: 5rem;
+     
+    }
+ }
+
+@media (min-width: 375px) and (max-width: 389px) {
+  .container {
+    position: relative;       /* or absolute/fixed/sticky depending on your layout needs */
+    width: 96vw !important;
+    
+  }
+
+  #memoryGamePanel.open {
+    margin-top: 2rem !important;
+    width: 100vw;
+    }
+
+    .close-btn {
+    top: 0.5rem;
+    right: 0.5rem;
+    }
+
+    .start-hint {
+    margin-top: 280px;
+    margin-left: 5rem;
+     
+    }
+}
+
+@media (min-width: 390px) and (max-width: 415px) {
+  .container {
+    position: relative;       /* or absolute/fixed/sticky depending on your layout needs */
+    width: 97vw !important;
+    
+  }
+
+  #memoryGamePanel.open {
+    margin-top: 60px !important;
+    width: 100vw;
+    }
+
+   .close-btn {
+    top: 1rem;
+    right: 1rem;
+    }
+
+    .start-hint {
+    margin-top: 280px;
+    margin-left: 5rem;
+     
+    }
+}
+
+@media (min-width: 416px) and (max-width: 450px) {
+  .container {
+    position: relative;       /* or absolute/fixed/sticky depending on your layout needs */
+    width: 96vw !important;
+    
+  }
+
+  #memoryGamePanel.open {
+    margin-top: 6rem !important;
+    width: 100vw;
+    }
+
+   .close-btn {
+    top: 1rem;
+    right: 1rem;
+    }
+}
+
+@media (min-width: 480px) and (max-width: 539px) {
+  .container {
+    width: 80vw;
+    max-width: 500px;
+  }
+}
+
+@media (min-width: 540px) and (max-width: 600px) {
+  .container {
+    width: 74vw !important;
+    
+  }
+}
+
+@media (min-width: 768px) and (max-width: 853px) {
+  .container {
+    position: relative;       /* or absolute/fixed/sticky depending on your layout needs */
+    width: 98vw !important;
+    
+  }
+
+  #memoryGamePanel.open {
+    margin-top: 5rem !important;
+    width: 65vw;
+    }
+
+    .close-btn {
+    top: 0.5rem;
+    right: 1rem;
+    }
+
+    .start-hint {
+    margin-top: 320px;
+    margin-left: 8rem;
+     
+    }
+}
+
+@media (min-width: 853px) and (max-width: 911px) {
+  .container {
+    width: 100vw !important;
+    
+  }
+}
+
+/* Small Desktop / Entry-level Laptops */
+@media (min-width: 912px) and (max-width: 1023px) {
+  .container {
+    width: 50vw !important;
+  }
+}
+
+/* Small Desktop / Entry-level Laptops */
+@media (min-width: 1024px) and (max-width: 1200px) {
+  .container {
+    position: relative;       /* or absolute/fixed/sticky depending on your layout needs */
+    width: 32vw !important;
+    
+  }
+
+  #memoryGamePanel.open {
+    margin-top: 1rem !important;
+    width: 35vw;
+    }
+
+    .close-btn {
+    top: 0.5rem;
+    right: 1.2rem;
+    }
+
+    .start-hint {
+    margin-top: 280px;
+    margin-left: 4rem;
+     
+    }
+}
+
+/* Medium Laptops (e.g., 13"–14") */
+@media (min-width: 1201px) and (max-width: 1365px) {
+  .container {
+    width: 34vw !important;
+  }
+}
+
+/* Standard 1366x768 Screens */
+@media (min-width: 1366px) and (max-width: 1400px) {
+  
+  .container {
+    position: relative;       /* or absolute/fixed/sticky depending on your layout needs */
+    width: 30vw !important;
+  }
+
+  #memoryGamePanel.open {
+    margin-top: 15px !important;
+    }
+
+    #memoryGamePanel {
+    max-width: 450px;
+    }
+
+    .close-btn {
+    top: 1rem;
+    right: 1.2rem;
+    }
+}
+
+/* MacBook Pro 13" / WQHD Laptops */
+@media (min-width: 1401px) and (max-width: 1500px) {
+  .container {
+    position: relative;       /* or absolute/fixed/sticky depending on your layout needs */
+    width: 35vw !important;
+  }
+
+  #memoryGamePanel.open {
+    margin-top: 90px !important;
+    }
+}
+
+@media (min-width: 1501px) and (max-width: 1600px) {
+  .container {
+    position: relative;       /* or absolute/fixed/sticky depending on your layout needs */
+    width: 35vw !important;
+  }
+
+  #memoryGamePanel.open {
+    margin-top: 70px !important;
+    }
+}
+
+/* Full HD Desktops (1920x1080) */
+@media (min-width: 1601px) and (max-width: 1857px) {
+  .container {
+    width: 24vw !important;
+  }
+}
+
+
+@media (min-width: 1858px) and (max-width: 2000px) {
+  .container {
+    position: relative;       /* or absolute/fixed/sticky depending on your layout needs */
+    width: 25vw !important;
+    
+  }
+
+  #memoryGamePanel.open {
+    margin-top: 90px !important;
+    max-width: 500px;
+    }
+}
+
+/* Ultra-Wide Monitors (3440px and up) */
+@media (min-width: 2001px) and (max-width: 2561px){
+  .container {
+    position: relative;       /* or absolute/fixed/sticky depending on your layout needs */
+    width: 91vw !important;
+    
+  }
+
+  #memoryGamePanel.open {
+    margin-top: 150px !important;
+    max-width: 600px;
+    }
+
+   .close-btn {
+    top: 1rem;
+    right: 1rem;
+    }
 }
 
