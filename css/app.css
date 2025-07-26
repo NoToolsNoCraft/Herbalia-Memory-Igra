@@ -213,7 +213,7 @@ body {
 
 .front {
     background-color: #ffd4d4;
-    background-image: url('/herbalia.png'); /* Replace with your logo path */
+    background-image: url('../herbalia.png'); /* Replace with your logo path */
     background-size: 60%; /* Adjust to your needs */
     background-repeat: no-repeat;
     background-position: center;
