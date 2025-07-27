@@ -292,3 +292,65 @@ board.addEventListener('click', matchChecker);
 window.addEventListener('load', () => {
     startGame();
 });
+
+
+
+const openBtn = document.getElementById('openGameButton');
+  const overlay = document.getElementById('memoryGameOverlay');
+  const panel = document.getElementById('memoryGamePanel');
+  const closeBtn = panel.querySelector('.close-btn');
+
+ // Open the panel
+openBtn.addEventListener('click', () => {
+    overlay.classList.add('open');
+    panel.classList.add('open');
+    // Remove the inert attribute when the panel is opened
+    overlay.removeAttribute('inert');
+    // Important: Focus an element inside the newly opened panel for accessibility
+    // For example, focus the close button within the panel
+    closeBtn.focus();
+    // You can remove this line entirely, as inert handles accessibility hiding
+    // overlay.setAttribute('aria-hidden', 'false'); // <-- REMOVE THIS LINE
+});
+
+  // Close when clicking close button
+  closeBtn.addEventListener('click', closePanel);
+
+  // Close when clicking outside panel
+  overlay.addEventListener('click', e => {
+    if (e.target === overlay) closePanel();
+  });
+
+  function closePanel() {
+    panel.classList.remove('open');
+    overlay.classList.remove('open');
+    // Add the inert attribute back when the panel is closed
+    overlay.setAttribute('inert', ''); // Setting it to an empty string is sufficient for a boolean attribute
+    // Important: Move focus back to the element that opened the panel, or a logical next focusable element
+    openBtn.focus();
+    // You can remove this line entirely, as inert handles accessibility hiding
+    // overlay.setAttribute('aria-hidden', 'true'); // <-- REMOVE THIS LINE
+}
+
+
+
+
+
+
+  const copyBtn = document.getElementById('copyCodeBtn');
+	const copyToast = document.getElementById('copyToast');
+
+	copyBtn.addEventListener('click', () => {
+	const code = document.getElementById('discountCode').textContent;
+	navigator.clipboard.writeText(code).then(() => {
+		// Show the toast
+		copyToast.classList.add('show');
+
+		// Hide after 2 seconds
+		setTimeout(() => {
+		copyToast.classList.remove('show');
+		}, 2000);
+	}).catch(() => {
+		console.error('Greška pri kopiranju koda.');
+	});
+	});

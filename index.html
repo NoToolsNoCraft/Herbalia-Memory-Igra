@@ -92,7 +92,7 @@
   color: white;
   text-shadow: 2px 2px 4px rgba(0,0,0,0.9);
 ">
-  Iskoristite kod za popust: 
+  Osvojili ste 10% popusta na celokupan asortiman 
   <span id="discountCode" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.7);">HERBALIA10</span> 
   <button id="copyCodeBtn" type="button" style="
     text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
@@ -133,59 +133,7 @@
 </div>	
 	<script type="text/javascript" src="js/app.js"></script>
 
-	<script>
-  const openBtn = document.getElementById('openGameButton');
-  const overlay = document.getElementById('memoryGameOverlay');
-  const panel = document.getElementById('memoryGamePanel');
-  const closeBtn = panel.querySelector('.close-btn');
-
-  // Open the panel
-  openBtn.addEventListener('click', () => {
-    overlay.classList.add('open');
-    panel.classList.add('open');
-    overlay.setAttribute('aria-hidden', 'false');
-  });
-
-  // Close when clicking close button
-  closeBtn.addEventListener('click', closePanel);
-
-  // Close when clicking outside panel
-  overlay.addEventListener('click', e => {
-    if (e.target === overlay) closePanel();
-  });
-
-  function closePanel() {
-    panel.classList.remove('open');
-    overlay.classList.remove('open');
-    overlay.setAttribute('aria-hidden', 'true');
-  }
-
-
-
-
-
-
-  const copyBtn = document.getElementById('copyCodeBtn');
-	const copyToast = document.getElementById('copyToast');
-
-	copyBtn.addEventListener('click', () => {
-	const code = document.getElementById('discountCode').textContent;
-	navigator.clipboard.writeText(code).then(() => {
-		// Show the toast
-		copyToast.classList.add('show');
-
-		// Hide after 2 seconds
-		setTimeout(() => {
-		copyToast.classList.remove('show');
-		}, 2000);
-	}).catch(() => {
-		console.error('Greška pri kopiranju koda.');
-	});
-	});
-
-
-
-</script>
+	
 
 </body>
 </html>
