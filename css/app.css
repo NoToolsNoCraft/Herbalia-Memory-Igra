@@ -186,7 +186,7 @@ body {
 .game-board {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-gap: 12px;
+    grid-gap: 6px;
     margin-top: 16px;
     position: relative;
 }
@@ -477,7 +477,7 @@ body {
 @media (max-width: 768px) {
     .game-board {
         grid-template-columns: repeat(4, 1fr);
-        grid-gap: 10px;
+        grid-gap: 6px;
     }
 
     .dashboard {
