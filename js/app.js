@@ -217,17 +217,20 @@ function matchChecker(e) {
 
 
 
-// Social media sharing options (unchanged)
 function updateShareLinks() {
     const time = document.getElementById('final-time').innerText;
     const moves = document.getElementById('final-moves').innerText;
     const gameUrl = window.location.href;
-    const message = `Razbio/la sam Herbalia memorijsku igru za ${time} sekundi i ${moves} poteza! 🌟 Otkrij svet prirodne kozmetike i ti! Izazivam te da se okušaš i pronađeš svoje omiljene Herbalia proizvode. Pogledaj ovde: ${gameUrl}`;
+    const message = `Razbio/la sam Herbalia memorijsku igru za ${time} sekundi i ${moves} poteza! 🌟 Memoriši. Poveži. Osvoji i ti 10%. Pogledaj ovde: ${gameUrl}`;
     const encodedMessage = encodeURIComponent(message);
 
     document.getElementById('shareFacebook').href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(gameUrl)}`;
     document.getElementById('shareWhatsApp').href = `https://wa.me/?text=${encodedMessage}`;
-    document.getElementById('shareViber').href = `viber://forward?text=${encodedMessage}`;
+    // Fallback for Viber: Use a generic URL or prompt to install Viber
+    const viberLink = navigator.userAgent.match(/Viber/i)
+        ? `viber://forward?text=${encodedMessage}`
+        : `https://www.viber.com/en/download?text=${encodedMessage}`; // Fallback to Viber download page or custom page
+    document.getElementById('shareViber').href = viberLink;
     document.getElementById('shareTelegram').href = `https://t.me/share/url?url=${encodeURIComponent(gameUrl)}&text=${encodedMessage}`;
 }
 
