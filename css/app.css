@@ -335,26 +335,51 @@ body {
     overflow-wrap: break-word;
 }
 
-/* Copy button */
+.discount-buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 0.5rem;
+  gap: 12px;
+}
+
 #copyCodeBtn {
-    cursor: pointer;
-    background-color: #bfa67a;
-    color: white;
-    border: none;
-    border-radius: 20px;
-    padding: 6px 14px;
-    font-size: 1.3rem;
-    font-weight: 600;
-    box-shadow: 0 3px 6px rgba(191,166,122,0.6);
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    user-select: none;
-    margin-left: 12px;
-    white-space: nowrap;
+  flex: 1;
+  cursor: pointer;
+  background-color: #bfa67a;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  box-shadow: 0 3px 6px rgba(191,166,122,0.6);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  white-space: nowrap;
 }
 
 #copyCodeBtn:hover {
-    background-color: #a08a5f;
-    box-shadow: 0 5px 12px rgba(160,138,95,0.7);
+  background-color: #a08a5f;
+  box-shadow: 0 5px 12px rgba(160,138,95,0.7);
+}
+
+.shop-button {
+  flex: 1;
+  text-align: center;
+  background-color: transparent;
+  color: white;
+  font-weight: 600;
+  border: 2px solid white;
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-size: 1.1rem;
+  text-decoration: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.shop-button:hover {
+  background-color: white;
+  color: #bfa67a;
 }
 
 .copy-toast {
