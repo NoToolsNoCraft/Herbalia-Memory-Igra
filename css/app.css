@@ -350,7 +350,7 @@ body {
   border: none;
   border-radius: 20px;
   padding: 6px 14px;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 600;
   box-shadow: 0 3px 6px rgba(191,166,122,0.6);
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
@@ -370,7 +370,7 @@ body {
   font-weight: 600;
   border: 2px solid white;
   border-radius: 20px;
-  font-size: 1.1rem;
+  font-size: 1rem;
   text-decoration: none;
   transition: background-color 0.3s ease, color 0.3s ease;
   text-shadow: none;
