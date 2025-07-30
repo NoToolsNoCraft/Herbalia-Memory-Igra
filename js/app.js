@@ -220,7 +220,12 @@ function matchChecker(e) {
 function updateShareLinks() {
     const time = document.getElementById('final-time').innerText;
     const moves = document.getElementById('final-moves').innerText;
-    const gameUrl = window.location.href;
+	
+    // Use fixed game URL for sharing
+    const gameUrl = 'https://herbalia.rs/';
+
+    // If you want to revert to dynamic URL later, uncomment the line below:
+    // const gameUrl = window.location.href;
     
     const message = `Razbio/la sam Herbalia memorijsku igru za ${time} sekundi i ${moves} poteza! Memoriši. Poveži. Osvoji i ti 10% ovde: ${gameUrl}`;
     const encodedMessage = encodeURIComponent(message);
