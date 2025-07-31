@@ -325,7 +325,7 @@ body {
 /* Code text styling */
 .discount-code #discountCode {
     font-family: 'Courier New', Courier, monospace;
-    background-color: #8194e7;
+    background-color: #ff0000;
     padding: 4px 8px;
     border-radius: 12px;
     letter-spacing: 0.05em;
@@ -345,8 +345,8 @@ body {
 #copyCodeBtn {
   flex: 1;
   cursor: pointer;
-  background-color: #bfa67a;
-  color: white;
+  background-color: #efff00;
+  color: #0011ff;
   border: none;
   border-radius: 20px;
   padding: 6px 14px;
@@ -358,17 +358,18 @@ body {
 }
 
 #copyCodeBtn:hover {
-  background-color: #a08a5f;
+  background-color: #0011ff;
+  color: #efff00;
   box-shadow: 0 5px 12px rgba(160,138,95,0.7);
 }
 
 .shop-button {
   flex: 1;
   text-align: center;
-  background-color: #bc4242;
-  color: white;
+  background-color: #1fb758;
+  color: #ffffff;
   font-weight: 600;
-  border: 2px solid white;
+  border: 4px solid white;
   border-radius: 20px;
   font-size: 1rem;
   text-decoration: none;
@@ -377,8 +378,9 @@ body {
 }
 
 .shop-button:hover {
-  background-color: white;
-  color: #bc4242;
+  background-color: #ffffff;
+  color: #1fb758;
+  
 }
 
 .copy-toast {
