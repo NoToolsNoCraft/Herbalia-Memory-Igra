@@ -146,7 +146,7 @@ function checkwin(num) {
 
             // **Call updateShareLinks after values are set**
             updateShareLinks();
-        }, 400);
+        }, 1000);
     }
 }
 
@@ -181,7 +181,7 @@ function matchChecker(e) {
             board.removeEventListener('click', matchChecker);
             setTimeout(function () {
                 board.addEventListener('click', matchChecker);
-            }, 1000);
+            }, 400);
 
             // Compare the image src (not class)
             if (selectedCards[0].nextElementSibling.firstChild.src === selectedCards[1].nextElementSibling.firstChild.src) {
@@ -201,14 +201,14 @@ function matchChecker(e) {
                 // Handle wrong moves - you might still want to track these separately if needed for other stats
                 wrongMoves += 1;
 
-                // Wait 1 second before closing mismatching cards so the player can see what they were
+                // Wait 0.9 second before closing mismatching cards so the player can see what they were
                 setTimeout(function () {
                     selectedCards.forEach(card => {
                         card.classList.remove('front-open');
                         card.nextElementSibling.classList.remove('back-open');
                     });
                     selectedCards = []; // Reset the selected cards array
-                }, 400);
+                }, 900);
             }
         }
     }
