@@ -181,7 +181,7 @@ function matchChecker(e) {
             board.removeEventListener('click', matchChecker);
             setTimeout(function () {
                 board.addEventListener('click', matchChecker);
-            }, 400);
+            }, 700);
 
             // Compare the image src (not class)
             if (selectedCards[0].nextElementSibling.firstChild.src === selectedCards[1].nextElementSibling.firstChild.src) {
@@ -208,7 +208,7 @@ function matchChecker(e) {
                         card.nextElementSibling.classList.remove('back-open');
                     });
                     selectedCards = []; // Reset the selected cards array
-                }, 900);
+                }, 700);
             }
         }
     }
