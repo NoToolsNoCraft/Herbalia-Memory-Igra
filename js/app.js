@@ -146,7 +146,7 @@ function checkwin(num) {
 
             // **Call updateShareLinks after values are set**
             updateShareLinks();
-        }, 1000);
+        }, 400);
     }
 }
 
@@ -208,7 +208,7 @@ function matchChecker(e) {
                         card.nextElementSibling.classList.remove('back-open');
                     });
                     selectedCards = []; // Reset the selected cards array
-                }, 1000);
+                }, 400);
             }
         }
     }
