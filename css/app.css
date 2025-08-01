@@ -653,7 +653,7 @@ body {
   }
 }
 
-@media (orientation: landscape) and (max-height: 699px) {
+@media (orientation: landscape) and (max-height: 599px) {
   .start-hint {
     display: none;
   }
